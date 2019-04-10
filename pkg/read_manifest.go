@@ -10,7 +10,7 @@ type ManifestFile struct {
 }
 
 type ManifestFormat struct {
-	assets []string `yaml:"Assets"`
+	Assets []string `yaml:"Assets"`
 }
 
 func (manifestFile ManifestFile) ReadAssets() (result []string, err error) {
@@ -25,6 +25,6 @@ func (manifestFile ManifestFile) ReadAssets() (result []string, err error) {
 		return
 	}
 
-	result = manifest.assets
+	result = manifest.Assets
 	return
 }
