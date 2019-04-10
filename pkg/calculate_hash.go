@@ -13,9 +13,9 @@ func CalculateHash(filepath string) (err error) {
 		return
 	}
 
-	hashes := make([]string, len(assets), len(assets))
-	for i, assetFile := range assets {
-		file, err := os.Open(assetFile)
+	hashBases := make([]string, len(assets), len(assets))
+	for i, assetPath := range assets {
+		file, err := os.Open(assetPath)
 		if err != nil {
 			return err
 		}
@@ -25,10 +25,10 @@ func CalculateHash(filepath string) (err error) {
 		if err != nil {
 			return err
 		}
-		hashes[i] = hash
+		hashBases[i] = hash + assetPath
 	}
 
-	assetBundleHash, err := sha256Sum(strings.NewReader(strings.Join(hashes, "")))
+	assetBundleHash, err := sha256Sum(strings.NewReader(strings.Join(hashBases, "")))
 	if err != nil {
 		return
 	}
