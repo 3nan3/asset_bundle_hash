@@ -8,6 +8,7 @@ import (
 )
 
 var (
+	projectRoot string
 	versionFlag bool
 
 	rootCmd = &cobra.Command {
@@ -29,7 +30,7 @@ var (
 				os.Exit(0)
 			}
 
-			if err := pkg.CalculateHash(args[0]); err != nil {
+			if err := pkg.CalculateHash(args[0], projectRoot); err != nil {
 				cmd.Println(err)
 				os.Exit(1)
 			}
@@ -43,4 +44,5 @@ func Execute() {
 
 func init() {
 	rootCmd.Flags().BoolVarP(&versionFlag, "version", "v", false, "print version number")
+	rootCmd.Flags().StringVarP(&projectRoot, "project-root", "d", ".", "change unity project root directory")
 }

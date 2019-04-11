@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func CalculateHash(filepath string) (err error) {
+func CalculateHash(filepath string, projectRoot string) (err error) {
 	manifestFile := ManifestFile{filepath}
 	assets, err := manifestFile.ReadAssets()
 	if err != nil {
@@ -15,7 +15,7 @@ func CalculateHash(filepath string) (err error) {
 
 	hashBases := make([]string, len(assets), len(assets))
 	for i, assetPath := range assets {
-		file, err := os.Open(assetPath)
+		file, err := os.Open(projectRoot + "/" + assetPath)
 		if err != nil {
 			return err
 		}
