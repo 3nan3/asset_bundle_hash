@@ -7,8 +7,8 @@ import (
 )
 
 func CalculateHash(filepath string, projectRoot string) (err error) {
-	manifestFile := ManifestFile{filepath}
-	assets, err := manifestFile.ReadAssets()
+	manifestFile := manifestFile{filepath}
+	assets, err := manifestFile.readAssets()
 	if err != nil {
 		return
 	}

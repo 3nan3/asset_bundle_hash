@@ -5,21 +5,21 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type ManifestFile struct {
+type manifestFile struct {
 	filepath string
 }
 
-type ManifestFormat struct {
+type manifestFormat struct {
 	Assets []string `yaml:"Assets"`
 }
 
-func (manifestFile ManifestFile) ReadAssets() (result []string, err error) {
+func (manifestFile manifestFile) readAssets() (result []string, err error) {
 	buf, err := ioutil.ReadFile(manifestFile.filepath)
 	if err != nil {
 		return
 	}
 
-	var manifest ManifestFormat
+	var manifest manifestFormat
 	err = yaml.Unmarshal(buf, &manifest)
 	if err != nil {
 		return
