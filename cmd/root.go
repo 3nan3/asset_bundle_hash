@@ -30,10 +30,13 @@ var (
 				os.Exit(0)
 			}
 
-			if err := pkg.CalculateHash(args[0], projectRoot); err != nil {
+			hash, err := pkg.CalculateHash(args[0], projectRoot)
+			if err != nil {
 				cmd.Println(err)
 				os.Exit(1)
 			}
+
+			cmd.Println(hash)
 		},
 	}
 )

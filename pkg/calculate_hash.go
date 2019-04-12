@@ -1,12 +1,11 @@
 package pkg
 
 import (
-	"fmt"
 	"os"
 	"strings"
 )
 
-func CalculateHash(filepath string, projectRoot string) (err error) {
+func CalculateHash(filepath string, projectRoot string) (assetBundleHash string, err error) {
 	manifestFile := manifestFile{filepath}
 	assets, err := manifestFile.readAssets()
 	if err != nil {
@@ -17,21 +16,22 @@ func CalculateHash(filepath string, projectRoot string) (err error) {
 	for i, assetPath := range assets {
 		file, err := os.Open(projectRoot + "/" + assetPath)
 		if err != nil {
-			return err
+			return "", err
 		}
 		defer file.Close()
 
 		hash, err := sha256Sum(file)
 		if err != nil {
-			return err
+			return "", err
 		}
 		hashBases[i] = hash + assetPath
 	}
 
-	assetBundleHash, err := sha256Sum(strings.NewReader(strings.Join(hashBases, "")))
+	result, err := sha256Sum(strings.NewReader(strings.Join(hashBases, "")))
 	if err != nil {
 		return
 	}
-	fmt.Println(assetBundleHash)
+
+	assetBundleHash = result
 	return
 }

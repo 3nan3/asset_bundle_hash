@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"io/ioutil"
+	"errors"
 	"gopkg.in/yaml.v2"
 )
 
@@ -22,6 +23,10 @@ func (manifestFile manifestFile) readAssets() (result []string, err error) {
 	var manifest manifestFormat
 	err = yaml.Unmarshal(buf, &manifest)
 	if err != nil {
+		return
+	}
+	if len(manifest.Assets) == 0 {
+		err = errors.New("Assets not found")
 		return
 	}
 
