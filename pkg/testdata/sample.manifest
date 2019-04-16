@@ -15,5 +15,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - pkg/testdata/sample_1.txt
-- pkg/testdata/sample_2.txt
+- pkg/testdata/samples/sample_2.txt
 Dependencies: []
