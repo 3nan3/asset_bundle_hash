@@ -7,7 +7,7 @@ import (
 
 func TestReadAssetsSuccess(t *testing.T) {
 	filePath := "testdata/sample.manifest"
-	expected := []string{"pkg/testdata/sample_1.txt", "pkg/testdata/sample_2.txt"}
+	expected := []string{"pkg/testdata/sample_1.txt", "pkg/testdata/samples/sample_2.txt"}
 
 	manifestFile := manifestFile{filePath}
 	assets, err := manifestFile.readAssets()

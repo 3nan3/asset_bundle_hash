@@ -10,11 +10,11 @@ func TestCalculateHashSuccess(t *testing.T) {
 	projectRoot := "../"
 
 	// asset1="pkg/testdata/sample_1.txt"
-	// asset2="pkg/testdata/sample_2.txt"
+	// asset2="pkg/testdata/samples/sample_2.txt"
 	// hash1=`cat $asset1 | openssl dgst -sha256`
 	// hash2=`cat $asset2 | openssl dgst -sha256`
 	// echo -n "${hash1}${asset1}${hash2}${asset2}" | openssl dgst -sha256
-	expected := "43e81c963f4777b75b3fd09938a1d075a91904d1bd93e0d4fdaedbd870263b7f"
+	expected := "db61003eb2b1e97ef0162a33b7772d9a6eca7795c4c894770643f946a351961c"
 
 	hash, err := CalculateHash(manifestFile, projectRoot)
 	if !assert.NoError(t, err) {
