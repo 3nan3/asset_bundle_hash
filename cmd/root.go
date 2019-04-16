@@ -36,7 +36,7 @@ var (
 				os.Exit(1)
 			}
 
-			cmd.Println(hash)
+			fmt.Println(hash)
 		},
 	}
 )
